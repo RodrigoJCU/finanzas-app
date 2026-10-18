@@ -37,7 +37,7 @@ export const whatsappEnv = lazy(
   z.object({
     WHATSAPP_ACCESS_TOKEN: z.string().min(20),
     WHATSAPP_PHONE_NUMBER_ID: z.string().regex(/^\d+$/, "debe ser solo números"),
-    WHATSAPP_VERIFY_TOKEN: z.string().min(8),
+    WHATSAPP_VERIFY_TOKEN: z.string().min(1),
     WHATSAPP_APP_SECRET: z.string().min(16),
     WHATSAPP_API_VERSION: z.string().regex(/^v\d+\.\d+$/).default("v23.0"),
     // Opcional: plantilla aprobada en Meta para avisar cuando la ventana de 24h está cerrada (tiene costo).

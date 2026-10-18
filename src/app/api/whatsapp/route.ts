@@ -13,9 +13,20 @@ export function GET(request: NextRequest) {
   const token = params.get("hub.verify_token");
   const challenge = params.get("hub.challenge");
 
-  if (mode === "subscribe" && token && challenge && token === whatsappEnv().WHATSAPP_VERIFY_TOKEN) {
+  let expected: string;
+  try {
+    expected = whatsappEnv().WHATSAPP_VERIFY_TOKEN;
+  } catch (error) {
+    console.error("[whatsapp] configuración incompleta", error);
+    return new Response("Faltan variables de WhatsApp en el servidor (revisa Vercel > Environment Variables)", {
+      status: 500,
+    });
+  }
+
+  if (mode === "subscribe" && token && challenge && token.trim() === expected.trim()) {
     return new Response(challenge, { status: 200, headers: { "Content-Type": "text/plain" } });
   }
+  console.error("[whatsapp] verificación rechazada: el Verify token de Meta no coincide con WHATSAPP_VERIFY_TOKEN");
   return new Response("Forbidden", { status: 403 });
 }
 
