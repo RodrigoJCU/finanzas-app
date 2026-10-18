@@ -80,6 +80,18 @@ export function formatLocal(instant: Date, timeZone: string): string {
   return `${year}-${pad(month)}-${pad(day)} ${pad(hour)}:${pad(minute)}`;
 }
 
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+// Días que faltan (redondeado hacia arriba, mínimo 0) hasta una fecha.
+export function daysUntil(iso: string, now: Date = new Date()): number {
+  return Math.max(0, Math.ceil((new Date(iso).getTime() - now.getTime()) / DAY_MS));
+}
+
+// ¿La fecha ocurrió hace menos de `days` días?
+export function isWithinLastDays(iso: string, days: number, now: Date = new Date()): boolean {
+  return now.getTime() - new Date(iso).getTime() < days * DAY_MS;
+}
+
 export const MONTH_NAMES_ES = [
   "enero",
   "febrero",

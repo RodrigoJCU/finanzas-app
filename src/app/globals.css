@@ -1,26 +1,57 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f8f5;
+  --foreground: #1f2421;
+  --chart-muted: #6b7280;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-hand: var(--font-caveat), cursive;
+}
+
+/* Paleta de marca: verde claro (acciones) a verde bosque (titulares y botones principales). */
+@theme {
+  --color-brand-50: #f0fdf2;
+  --color-brand-100: #d8ffd8;
+  --color-brand-200: #b6f0c0;
+  --color-brand-300: #85de98;
+  --color-brand-400: #56c56f;
+  --color-brand-500: #3dae56;
+  --color-brand-600: #2b9145;
+  --color-brand-700: #1d7537;
+  --color-brand-800: #005e23;
+  --color-brand-900: #0a4a1e;
+  --color-brand-950: #03290f;
+  --color-ink: #1f2421;
+  --color-note: #fdf1b8;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0b0f0c;
+    --foreground: #e6ebe7;
+    --chart-muted: #9ca3af;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Resaltado tipo marcador para palabras clave en titulares. */
+.mark {
+  background: linear-gradient(transparent 12%, var(--color-brand-100) 12%, var(--color-brand-100) 88%, transparent 88%);
+  border-radius: 0.4rem;
+  padding: 0 0.3rem;
 }
