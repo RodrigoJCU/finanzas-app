@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Librerías de correo que deben ejecutarse tal cual en Node.js (no se empaquetan).
+  serverExternalPackages: ["imapflow", "mailparser"],
   turbopack: {
     rules: {
       "*.css": {

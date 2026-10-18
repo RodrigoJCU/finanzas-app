@@ -6,15 +6,32 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:check": "node --env-file-if-exists=.env.local scripts/check-db.mjs",
+    "typecheck": "tsc --noEmit",
+    "user:link": "node --env-file-if-exists=.env.local scripts/link-user.mjs",
+    "cron:sql": "node --env-file-if-exists=.env.local scripts/cron-sql.mjs"
   },
   "dependencies": {
+    "@google/genai": "^2.30.0",
+    "@stripe/stripe-js": "^10.1.0",
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.118.0",
+    "date-fns": "^4.4.0",
+    "imapflow": "^2.5.4",
+    "lucide-react": "^1.59.0",
+    "mailparser": "^3.9.45",
     "next": "16.4.2",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "recharts": "^3.10.1",
+    "server-only": "^0.0.1",
+    "stripe": "^23.0.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",
+    "@types/mailparser": "^3.9.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
